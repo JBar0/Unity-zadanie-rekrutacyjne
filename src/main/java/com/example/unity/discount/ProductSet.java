@@ -26,8 +26,12 @@ public class ProductSet {
         double allProductPrices = sumAllProductPrices();
 
         this.getProductList().forEach(product -> {
-            double discountForProduct = (product.getPrice() / allProductPrices) * this.discount;
-            product.setDiscount(Precision.round(discountForProduct, 2));
+            if (product.getPrice() == 0) {
+                product.setDiscount(0);
+            } else {
+                double discountForProduct = (product.getPrice() / allProductPrices) * this.discount;
+                product.setDiscount(Precision.round(discountForProduct, 2));
+            }
         });
 
 

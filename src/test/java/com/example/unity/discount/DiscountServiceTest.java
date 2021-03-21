@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DiscountServiceTest {
 
@@ -16,6 +17,17 @@ class DiscountServiceTest {
     @BeforeEach
     public void setUp() {
         discountService = new DiscountService();
+    }
+
+    @Test
+    public void givenEmptyList_thenThrowEmptyListException() {
+        //given
+        List<Product> productList = Collections.emptyList();
+        double discount = 100;
+        ProductSet productSet = new ProductSet(productList, discount);
+
+        //when, then
+        assertThrows(EmptyProductListException.class, () -> discountService.calculateProductDiscounts(productSet));
     }
 
     @Test
