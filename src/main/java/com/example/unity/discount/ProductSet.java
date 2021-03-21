@@ -1,4 +1,4 @@
-package com.example.unity.discount.model;
+package com.example.unity.discount;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Dto {
+public class ProductSet {
     private List<Product> productList;
     private double discount;
 
@@ -25,7 +25,7 @@ public class Dto {
         double allProductPrices = sumAllProductPrices();
 
         this.getProductList().forEach(product -> {
-            double discountForProduct = ((product.getPrice() * 100) / allProductPrices) * this.discount;
+            double discountForProduct = (product.getPrice() / allProductPrices) * this.discount;
             product.setDiscount(Precision.round(discountForProduct, 2));
         });
 

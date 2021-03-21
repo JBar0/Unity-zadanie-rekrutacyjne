@@ -1,4 +1,4 @@
-package com.example.unity.discount.model;
+package com.example.unity.discount;
 
 import lombok.Getter;
 import lombok.Setter;
