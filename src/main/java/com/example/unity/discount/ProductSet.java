@@ -17,6 +17,7 @@ public class ProductSet {
     private double discount;
 
     public void calculateDiscounts() {
+        checkIfGivenListIsEmpty();
         calculateDiscountForEveryProduct();
         addDiscountRemainderToLastProductDiscount();
     }
@@ -30,6 +31,12 @@ public class ProductSet {
         });
 
 
+    }
+
+    private void checkIfGivenListIsEmpty() {
+        if (productList == null || productList.size() == 0) {
+            throw new EmptyProductListException();
+        }
     }
 
     private void addDiscountRemainderToLastProductDiscount() {
