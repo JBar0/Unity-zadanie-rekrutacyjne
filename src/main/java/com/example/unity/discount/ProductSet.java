@@ -18,6 +18,7 @@ public class ProductSet {
 
     public void calculateDiscounts() {
         checkIfGivenListIsEmpty();
+        checkIfListContainsOverFiveProducts();
         calculateDiscountForEveryProduct();
         addDiscountRemainderToLastProductDiscount();
     }
@@ -40,6 +41,12 @@ public class ProductSet {
     private void checkIfGivenListIsEmpty() {
         if (productList == null || productList.size() == 0) {
             throw new EmptyProductListException();
+        }
+    }
+
+    private void checkIfListContainsOverFiveProducts() {
+        if (productList.size() > 5) {
+            throw new OverFiveProductsException();
         }
     }
 

@@ -31,6 +31,24 @@ class DiscountServiceTest {
     }
 
     @Test
+    public void givenMoreThanFiveProducts_thenThrowOverFiveProductsException() {
+        //given
+        List<Product> productList = Arrays.asList(
+                new Product("Product1", 5000),
+                new Product("Product2", 2000),
+                new Product("Product3", 1000),
+                new Product("Product4", 1000),
+                new Product("Product5", 1000),
+                new Product("Product6", 1000)
+        );
+        double discount = 100;
+        ProductSet productSet = new ProductSet(productList, discount);
+
+        //when, then
+        assertThrows(OverFiveProductsException.class, () -> discountService.calculateProductDiscounts(productSet));
+    }
+
+    @Test
     public void givenOneProduct_thenReturnThemWithCalculatedDiscounts() {
         //given
         List<Product> productList = Collections.singletonList(
